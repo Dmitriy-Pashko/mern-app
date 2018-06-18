@@ -18,10 +18,11 @@ const workers = {
     } else {
       console.log(curwrk);
       const cw = curwrk;
-      cw.name = this.state.name;
-      cw.bdate = this.state.bdate;
-      cw.position = this.state.position;
-      cw.salary = this.state.salary;
+      console.log(this.state.worker);
+      cw.name = this.state.worker.name;
+      cw.bdate = this.state.worker.bdate;
+      cw.position = this.state.worker.position;
+      cw.salary = this.state.worker.salary;
       console.log(cw);
       this.props.onWorkerUpdate(cw._id, cw);
     }

@@ -18,7 +18,6 @@ class Worker extends Component {
         position: '',
         salary: '',
       },
-      open: false,
     };
     this.handleClickOpen = workers.handleClickOpen.bind(this);
     this.handleClose = workers.handleClose.bind(this);
@@ -48,6 +47,7 @@ class Worker extends Component {
               id="name"
               label="Add full name"
               type="email"
+              value={this.state.name}
               fullWidth
             />
             <TextField
@@ -57,6 +57,7 @@ class Worker extends Component {
               id="bdate"
               label="Enter Birthday Date"
               type="email"
+              value={this.state.bdate}
               fullWidth
             />
             <TextField
@@ -66,6 +67,7 @@ class Worker extends Component {
               id="position"
               label="Enter Position"
               type="email"
+              value={this.state.position}
               fullWidth
             />
             <TextField
@@ -75,6 +77,7 @@ class Worker extends Component {
               id="salary"
               label="Enter Salary"
               type="email"
+              value={this.state.salary}
               fullWidth
             />
           </DialogContent>

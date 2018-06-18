@@ -30,6 +30,7 @@ class WorkerBox extends Component {
           workerList={this.state.list}
           onWorkerDelete={this.deleteWorker}
           onSetWorker={this.setWorker}
+          onUpdateDialog={this.dialogOpen}
         />
         <Worker
           onModalChange={this.modalChange}

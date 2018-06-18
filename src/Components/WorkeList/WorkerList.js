@@ -8,13 +8,6 @@ import Button from '@material-ui/core/Button';
 import { ArrowUpBoldCircleOutline, Delete } from 'mdi-material-ui';
 import list from './controller';
 
-const styles = {
-  root: {
-    width: '100%',
-
-  },
-};
-
 class WorkerList extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +17,7 @@ class WorkerList extends Component {
   render() {
     return (
       <Fragment>
-        <Table style={styles.root}>
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
@@ -34,7 +27,7 @@ class WorkerList extends Component {
               <TableCell>Update/Delete</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
             {this.props.workerList.map((worker) => {
               return (
                 <TableRow key={worker._id}>

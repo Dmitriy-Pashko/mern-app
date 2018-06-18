@@ -33,10 +33,9 @@ const box = {
         console.log(error);
       });
   },
-  setWorker(curWorker, modal) {
+  setWorker(curWorker) {
     this.setState({
       worker: curWorker,
-      dialog: modal,
     });
   },
   workerUpdate(id, worker) {

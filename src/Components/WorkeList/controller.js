@@ -4,8 +4,8 @@ const list = {
     this.props.onWorkerDelete(id);
   },
   handleUpdate(worker) {
-    const modal = true;
-    this.props.onSetWorker(worker, modal);
+    this.props.onSetWorker(worker);
+    this.props.onUpdateDialog();
   },
 };
 export default list;
