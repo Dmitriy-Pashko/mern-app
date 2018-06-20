@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import WorkerList from '../WorkeList/WorkerList';
 import Worker from '../Worker/Worker';
 import box from './controller';
@@ -13,34 +14,20 @@ class WorkerBox extends Component {
       dialog: false,
     };
     this.loadWorkers = box.loadWorkers.bind(this);
-    this.modalChange = box.modalChange.bind(this);
-    this.deleteWorker = box.deleteWorker.bind(this);
-    this.setWorker = box.setWorker.bind(this);
-    this.workerUpdate = box.workerUpdate.bind(this);
-    this.dialogOpen = box.dialogOpen.bind(this);
-    this.dialogClose = box.dialogClose.bind(this);
   }
   componentDidMount() {
     this.loadWorkers();
   }
   render() {
+    const { list } = this.state;
     return (
-      <div>
-        <WorkerList
-          workerList={this.state.list}
-          onWorkerDelete={this.deleteWorker}
-          onSetWorker={this.setWorker}
-          onUpdateDialog={this.dialogOpen}
-        />
-        <Worker
-          onModalChange={this.modalChange}
-          currentWorker={this.state.worker}
-          onWorkerUpdate={this.workerUpdate}
-          open={this.state.dialog}
-          onDialogOpen={this.dialogOpen}
-          onDialogClose={this.dialogClose}
-        />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" render={props => <WorkerList {...props} list={list} />} />
+          <Route path="/create" component={Worker} />
+          <Route path="/update/:id" component={Worker} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

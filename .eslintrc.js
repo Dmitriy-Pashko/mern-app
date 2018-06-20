@@ -1,7 +1,12 @@
 module.exports = {
     "extends": "airbnb",
     "rules": {
-        "arrow-body-style": ["error", "always"],
+        "jsx-a11y/anchor-is-valid": [ "error", {
+            "components": [ "Link" ],
+            "specialLink": [ "hrefLeft", "hrefRight" ],
+            "aspects": ["preferButton" ]
+          }],
+        "arrow-body-style" : 0,
         "linebreak-style" : 0,
         "prefer-arrow-callback" : 0,
         "spaced-comment" : 0,

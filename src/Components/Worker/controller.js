@@ -1,37 +1,49 @@
+import axios from 'axios';
+
 const workers = {
+  createWorker(worker) {
+    axios.post(this.props.url, worker)
+      .then((response) => {
+        const { list } = this.state;
+        const newList = list.concat([response.data]);
+        this.setState({ list: newList });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
   handleChange(e) {
     const { worker } = this.state;
     worker[e.target.id] = e.target.value;
     this.setState({ worker });
   },
-  handleSubmit(curwrk, e) {
+  handleSubmit(e) {
     e.preventDefault();
-    if (!curwrk._id) {
-      const wrk = {
-        name: '', bdate: '', position: '', salary: '',
-      };
-      wrk.name = this.state.worker.name;
-      wrk.bdate = this.state.worker.bdate;
-      wrk.position = this.state.worker.position;
-      wrk.salary = this.state.worker.salary;
-      this.props.onModalChange(wrk);
+    const { id } = this.props.match.params;
+    const wrk = {
+      name: '', bdate: '', position: '', salary: '',
+    };
+    wrk.name = this.state.worker.name;
+    wrk.bdate = this.state.worker.bdate;
+    wrk.position = this.state.worker.position;
+    wrk.salary = this.state.worker.salary;
+    if (!id) {
+      axios.post('http://localhost:3001/api/workers', wrk)
+        .then(() => {
+          this.props.history.push('/');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
-      console.log(curwrk);
-      const cw = curwrk;
-      console.log(this.state.worker);
-      cw.name = this.state.worker.name;
-      cw.bdate = this.state.worker.bdate;
-      cw.position = this.state.worker.position;
-      cw.salary = this.state.worker.salary;
-      console.log(cw);
-      this.props.onWorkerUpdate(cw._id, cw);
+      axios.put(`http://localhost:3001/api/workers/${id}`, wrk)
+        .then(() => {
+          this.props.history.push('/');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  },
-  handleClickOpen() {
-    this.props.onDialogOpen();
-  },
-  handleClose() {
-    this.props.onDialogClose();
   },
 };
 export default workers;

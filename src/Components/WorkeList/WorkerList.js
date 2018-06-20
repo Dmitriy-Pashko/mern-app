@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -12,7 +13,6 @@ class WorkerList extends Component {
   constructor(props) {
     super(props);
     this.handleDelete = list.handleDelete.bind(this);
-    this.handleUpdate = list.handleUpdate.bind(this);
   }
   render() {
     return (
@@ -28,7 +28,7 @@ class WorkerList extends Component {
             </TableRow>
           </TableHead>
           <TableBody >
-            {this.props.workerList.map((worker) => {
+            {this.props.list.map((worker) => {
               return (
                 <TableRow key={worker._id}>
                   <TableCell>{worker.name}</TableCell>
@@ -36,9 +36,11 @@ class WorkerList extends Component {
                   <TableCell>{worker.position}</TableCell>
                   <TableCell>{worker.salary}</TableCell>
                   <TableCell>
-                    <Button variant="fab" size="medium" style={{ marginRight: '10px' }} onClick={() => { this.handleUpdate(worker); }}>
-                      <ArrowUpBoldCircleOutline style={{ fontSize: 48 }} />
-                    </Button>
+                    <Link to={`/update/${worker._id}`}>
+                      <Button variant="fab" size="medium" style={{ marginRight: '10px' }} >
+                        <ArrowUpBoldCircleOutline style={{ fontSize: 48 }} />
+                      </Button>
+                    </Link>
                     <Button variant="fab" size="medium" onClick={(e) => { this.handleDelete(worker._id, e); }}>
                       <Delete style={{ fontSize: 48 }} />
                     </Button>
@@ -49,6 +51,7 @@ class WorkerList extends Component {
             }
           </TableBody>
         </Table>
+        <Link to="/create"><Button>Create Worker</Button></Link>
       </Fragment>
     );
   }
