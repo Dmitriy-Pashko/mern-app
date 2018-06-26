@@ -1,10 +1,9 @@
-import axios from 'axios';
-import api from '../Worker/Model/api';
+import wlist from '../../Models/Worker/worker-handler';
 
 const list = {
   handleDelete(id, e) {
     e.preventDefault();
-    api.delete(id);
+    wlist.delete(id)
       .then(() => {
         this.props.history.push('/');
       })

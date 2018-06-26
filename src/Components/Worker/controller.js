@@ -1,4 +1,4 @@
-import api from './Model/api';
+import wlist from '../../Models/Worker/worker-handler';
 
 const workers = {
   handleChange(e) {
@@ -17,7 +17,7 @@ const workers = {
     wrk.position = this.state.worker.position;
     wrk.salary = this.state.worker.salary;
     if (!id) {
-      api.create(wrk)
+      wlist.create(wrk)
         .then(() => {
           this.props.history.push('/');
         })
@@ -25,7 +25,7 @@ const workers = {
           console.log(error);
         });
     } else {
-      api.create(wrk, id)
+      wlist.create(wrk, id)
         .then(() => {
           this.props.history.push('/');
         })
