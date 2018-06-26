@@ -1,11 +1,19 @@
 import { computed, action } from 'mobx';
+import store from './state';
 import api from './api';
 
 
 const wlist = {
   workerlist: [],
+  setWorkeList: action(function (list) {
+    store.workerList = list;
+  }),
   fetch: action(function () {
-    return api.fetch();
+    return api.fetch()
+      .then((data) => {
+        this.setWorkeList(data);
+        return data;
+      });
   }),
   delete: action(function (id) {
     api.delete(id);
