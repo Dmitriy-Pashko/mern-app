@@ -10,8 +10,6 @@ class WorkerBox extends Component {
     super(props);
     this.state = {
       list: [],
-      worker: {},
-      dialog: false,
     };
     this.loadWorkers = box.loadWorkers.bind(this);
   }
