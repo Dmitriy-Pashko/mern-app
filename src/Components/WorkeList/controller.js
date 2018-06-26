@@ -1,10 +1,10 @@
 import axios from 'axios';
+import api from '../Worker/Model/api';
 
 const list = {
   handleDelete(id, e) {
     e.preventDefault();
-    console.log(id);
-    axios.delete(`http://localhost:3001/api/workers/${id}`)
+    api.delete(id);
       .then(() => {
         this.props.history.push('/');
       })

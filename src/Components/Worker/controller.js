@@ -1,17 +1,6 @@
-import axios from 'axios';
+import api from './Model/api';
 
 const workers = {
-  createWorker(worker) {
-    axios.post(this.props.url, worker)
-      .then((response) => {
-        const { list } = this.state;
-        const newList = list.concat([response.data]);
-        this.setState({ list: newList });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
   handleChange(e) {
     const { worker } = this.state;
     worker[e.target.id] = e.target.value;
@@ -28,7 +17,7 @@ const workers = {
     wrk.position = this.state.worker.position;
     wrk.salary = this.state.worker.salary;
     if (!id) {
-      axios.post('http://localhost:3001/api/workers', wrk)
+      api.create(wrk)
         .then(() => {
           this.props.history.push('/');
         })
@@ -36,7 +25,7 @@ const workers = {
           console.log(error);
         });
     } else {
-      axios.put(`http://localhost:3001/api/workers/${id}`, wrk)
+      api.create(wrk, id)
         .then(() => {
           this.props.history.push('/');
         })
